@@ -1,19 +1,10 @@
+""" ### **3. Seleziona il numero più vicino a 0.5 in un array casuale**
+Genera un array 10 x 3 con numeri casuali nell'intervallo [0,1].
+Per ogni riga, seleziona il numero più vicino a 0.5. Per farlo usa il fancy indexing. """
 
+import numpy as np
 
-a = [4, 5, 10, 12, 100]
-b = a[3:5]
-c = [None] * len(a)
-    
-for i in range(0, len(a)):
-    c[len(a) - 1 - i] = a[i]
-
-
-for i in range(0, len(a)):
-    #print(i)
-    div = a[i] / c[i]
-    print(div)
-
-
-a = [4, 5, 10, 12, 100]
-b = a[3:5]
-c = [None] * len(a)
+a = np.random.rand(10,3)
+print(a)
+minValue = a[np.arange(10), np.argmin(np.abs(a - 0.5), axis=1)]
+print(minValue)
