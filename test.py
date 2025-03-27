@@ -1,44 +1,29 @@
-""" 
-### **6. Valori di Co2**
-
-1. Carica tramite numpy il file generato e salvato a lezione sulle emissioni di CO2
-
-2. Calcola quanti valori ci CO2 sono sopra la soglia di 18  tonnellate per anno ed il loro valore medio
-
-3. Calcola la frazione totale di emissione sopra la soglia (somma totale sopra la soglia/somma totale)
-
- """
- 
 import numpy as np
-file = np.genfromtxt("data.csv", delimiter=',', skip_header=1)
-years = file[:,0]
-years = np.unique(years)
-#print(years)
-year_data = {}
-for year in years:
+lista_parole = [
+    'INSEDIAMENTO', 'SEPARAZIONE', 'DIFFERENZA', 'APPLICAZIONE', 'ATTEGGIAMENTO', 'VERDURA', 'IMPERO', 'RICEVIMENTO',
+    'IGNORANZA', 'BIOGRAFIA', 'VISIONE', 'AGENTE DI POLIZIA', 'PROVA', 'PRESTAZIONE', 'PRESENTAZIONE', 'PARENTE',
+    'GIUSTIFICAZIONE', 'FILOSOFIA', 'DIREZIONE', 'BENEFICIARIO', 'BATTERIA', 'CERIMONIA', 'AGONIA', 'RECUPERO',
+    'ALFABETIZZAZIONE', 'CONSEGNA', 'SERBATOIO', 'VOLONTARIO', 'DEPOSITO', 'BIRILLO DA BOWLING', 'NEMICO', 'ANNUNCIO',
+    'CARAMELLA ZUCCHERATA', 'FULMINE', 'PALLONCINO', 'COPERTA', 'SCOPERTA', 'PENALITÀ', 'GENERALE', 'ALPACA',
+    'VANTAGGIO', 'HOT DOG', 'ABITO', 'MATEMATICA', 'VARIANTE'
+]
 
-    year_data[year] =  file[file[:,0] == year]
-    #print(year, year_data)
-   
-countYear = {}
-sumYear = {}
-sumYearSotto = {}
-print(len(year_data))
-for year in year_data:
-    countYear[year] = len(year_data[year][year_data[year][:,1] > 18])
-    sum_val = np.sum(year_data[year][year_data[year][:,1] > 18, 1])
-    #print(sum_val)
-    sumYear[year] = sum_val / countYear[year] if countYear[year] > 0 else 0
+# Estrazione casuale di 5 parole con reinserimento
+parole = np.random.choice(lista_parole, 5)
+print(parole)
 
-    #print(year, countYear[year])
+testo = """In epoche passate, viveva una donna saggia che era molto orgogliosa dell'antico __ che proteggeva. Quando un anziano del villaggio venne a chiederle consiglio su come garantire al meglio un raccolto abbondante e le offrì il __ come dono, i suoi occhi si spalancarono e lei esclamò una sola parola, "__".  
+Radunò il villaggio e, per i successivi 100 giorni, su sua richiesta, gli abitanti cercarono nella foresta un __.  
+Nel 101° giorno, il bambino più giovane del villaggio trovò ciò che stavano cercando e tutti corsero dalla donna saggia per donarglielo.  
+Con un sorriso da un orecchio all’altro, e cantando canti di festa, la donna saggia guardò i suoi compaesani e disse: "Ora è giunto il tempo del banchetto - nessuno rimarrà mai più senza _!" Ci fu grande gioia e celebrazione."""
+index = 0
+indici = [i for i in range(len(testo)) if testo.startswith("_", i)]
+print(indici)
 
-for year in sorted(countYear.keys()):
-    print("Anno: ", year, "Emissioni sopra 18: ", countYear[year], "Media: ", sumYear[year])
-    
-sumTot = 0
-for year in sumYear:
-    sumTot += sumYear[year]
+indiciScelti = np.random.choice(indici, 5)
+testo_list = list(testo)
+for i in indiciScelti:
+    testo_list[i] = parole[index]
+    index += 1
 
-
-print("Somma totale sopra la soglia: ", sumTot)
-print("Frazione totale sopra la soglia: ", sumTot / np.sum(file[file[:,1] >=0, 1]))
+print("".join(testo_list))
