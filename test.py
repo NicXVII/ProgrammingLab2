@@ -1,29 +1,21 @@
-import numpy as np
-lista_parole = [
-    'INSEDIAMENTO', 'SEPARAZIONE', 'DIFFERENZA', 'APPLICAZIONE', 'ATTEGGIAMENTO', 'VERDURA', 'IMPERO', 'RICEVIMENTO',
-    'IGNORANZA', 'BIOGRAFIA', 'VISIONE', 'AGENTE DI POLIZIA', 'PROVA', 'PRESTAZIONE', 'PRESENTAZIONE', 'PARENTE',
-    'GIUSTIFICAZIONE', 'FILOSOFIA', 'DIREZIONE', 'BENEFICIARIO', 'BATTERIA', 'CERIMONIA', 'AGONIA', 'RECUPERO',
-    'ALFABETIZZAZIONE', 'CONSEGNA', 'SERBATOIO', 'VOLONTARIO', 'DEPOSITO', 'BIRILLO DA BOWLING', 'NEMICO', 'ANNUNCIO',
-    'CARAMELLA ZUCCHERATA', 'FULMINE', 'PALLONCINO', 'COPERTA', 'SCOPERTA', 'PENALITÀ', 'GENERALE', 'ALPACA',
-    'VANTAGGIO', 'HOT DOG', 'ABITO', 'MATEMATICA', 'VARIANTE'
-]
+# ### **1.Consumo di alcol per paese** 
+# Esegui un’**analisi esplorativa** focalizzata sul **consumo di alcol**.  
+# Analizza i seguenti aspetti:
+# * Visualizza i primi 10 paesi ordinati per total_litres_of_pure_alcohol (dal più alto)
 
-# Estrazione casuale di 5 parole con reinserimento
-parole = np.random.choice(lista_parole, 5)
-print(parole)
+# * Calcola la media del consumo di birra, vino, e distillati
 
-testo = """In epoche passate, viveva una donna saggia che era molto orgogliosa dell'antico __ che proteggeva. Quando un anziano del villaggio venne a chiederle consiglio su come garantire al meglio un raccolto abbondante e le offrì il __ come dono, i suoi occhi si spalancarono e lei esclamò una sola parola, "__".  
-Radunò il villaggio e, per i successivi 100 giorni, su sua richiesta, gli abitanti cercarono nella foresta un __.  
-Nel 101° giorno, il bambino più giovane del villaggio trovò ciò che stavano cercando e tutti corsero dalla donna saggia per donarglielo.  
-Con un sorriso da un orecchio all’altro, e cantando canti di festa, la donna saggia guardò i suoi compaesani e disse: "Ora è giunto il tempo del banchetto - nessuno rimarrà mai più senza _!" Ci fu grande gioia e celebrazione."""
-index = 0
-indici = [i for i in range(len(testo)) if testo.startswith("_", i)]
-print(indici)
+# * Crea una nuova colonna alcohol_index che sia: `(beer_servings + wine_servings + spirit_servings) / 3`
 
-indiciScelti = np.random.choice(indici, 5)
-testo_list = list(testo)
-for i in indiciScelti:
-    testo_list[i] = parole[index]
-    index += 1
+# * Trova il paese con il valore massimo di alcohol_index
 
-print("".join(testo_list))
+# * Filtra solo i paesi che consumano più di 100 birre all’anno
+
+# Crea un bar chart dei 10 paesi con più consumo totale (total_litres_of_pure_alcohol)
+
+# Crea un line plot con wine_servings ordinato per paese (usa sort_values)
+
+import pandas as pd
+
+df = pd.read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/alcohol-consumption/drinks.csv")
+print(df)
